@@ -1,3 +1,4 @@
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Insets;
 
@@ -19,15 +20,23 @@ public class DispenserPanel extends JPanel {
     private JButton[] repairReciptPrinterButtons;
     private JButton[] repairCashRegisterButtons;
     private JButton[] changeFuelPriceButtons;
+    private JButton[] resetMoneyButtons;
+    private JButton[] showCurrentMoneyStatusButtons;
     private int ID;
 
     public DispenserPanel(MainFrame mainFrame, int ID) {
         super();
         this.ID = ID;
-        setLayout(new GridLayout(11, 3, 5, 5));
+        setLayout(new GridLayout(13, 3, 5, 5));
         setDispensers();
         setUI();
         addActionListeners(mainFrame);
+    }
+
+    public Dimension getPreferredSize() {
+        Dimension size = super.getPreferredSize();
+        size.width += 100;
+        return size;
     }
 
     private void setDispensers() {
@@ -60,6 +69,8 @@ public class DispenserPanel extends JPanel {
         repairReciptPrinterButtons = new JButton[3];
         repairCashRegisterButtons = new JButton[3];
         changeFuelPriceButtons = new JButton[3];
+        showCurrentMoneyStatusButtons = new JButton[3];
+        resetMoneyButtons = new JButton[3];
         for (int i = 0; i < 3; i++) {
             typeOfDistributorLabels[i] = new JLabel(dispensers[i].getType());
             typeOfDistributorLabels[i].setFont(FontSingleton.getInstance().getFont());
@@ -125,6 +136,20 @@ public class DispenserPanel extends JPanel {
             add(repairReciptPrinterButtons[i]);
         }
 
+        for (int i = 0; i < 3; i++) {
+            showCurrentMoneyStatusButtons[i] = new JButton("Pokaż status kasy fiskalnej");
+            showCurrentMoneyStatusButtons[i].setCursor(CursorSingleton.getInstance().getHandCursor());
+            showCurrentMoneyStatusButtons[i].setFont(FontSingleton.getInstance().getSmallerFont());
+            add(showCurrentMoneyStatusButtons[i]);
+        }
+
+        for (int i = 0; i < 3; i++) {
+            resetMoneyButtons[i] = new JButton("Napełnij kasę fiskalną");
+            resetMoneyButtons[i].setCursor(CursorSingleton.getInstance().getHandCursor());
+            resetMoneyButtons[i].setFont(FontSingleton.getInstance().getSmallerFont());
+            add(resetMoneyButtons[i]);
+        }
+
     }
 
     public void setClientButtonsVisibility(boolean visbility) {
@@ -140,6 +165,8 @@ public class DispenserPanel extends JPanel {
             repairReciptPrinterButtons[i].setVisible(visibility);
             repairCashRegisterButtons[i].setVisible(visibility);
             changeFuelPriceButtons[i].setVisible(visibility);
+            showCurrentMoneyStatusButtons[i].setVisible(visibility);
+            resetMoneyButtons[i].setVisible(visibility);
         }
     }
 
@@ -160,6 +187,9 @@ public class DispenserPanel extends JPanel {
                     .addActionListener(new RepairCashRegisterButtonActionListener(mainFrame, destroyMessageLabels[i]));
             repairReciptPrinterButtons[i]
                     .addActionListener(new RepairReciptPrinterButtonActionListener(mainFrame, destroyMessageLabels[i]));
+            showCurrentMoneyStatusButtons[i]
+                    .addActionListener(new ShowCashRegisterMoneyStatusActionListener(mainFrame));
+            resetMoneyButtons[i].addActionListener(new ResetMoneyActionListener(mainFrame, null));
         }
     }
 
@@ -171,6 +201,8 @@ public class DispenserPanel extends JPanel {
             repairReciptPrinterButtons[i].setEnabled(true);
             repairCashRegisterButtons[i].setEnabled(true);
             changeFuelPriceButtons[i].setEnabled(true);
+            showCurrentMoneyStatusButtons[i].setEnabled(true);
+            resetMoneyButtons[i].setEnabled(true);
         }
         for (int i = 0; i < 3; i++) {
             if (!(this.ID == ID && count == i)) {
@@ -180,6 +212,8 @@ public class DispenserPanel extends JPanel {
                 repairReciptPrinterButtons[i].setEnabled(false);
                 repairCashRegisterButtons[i].setEnabled(false);
                 changeFuelPriceButtons[i].setEnabled(false);
+                showCurrentMoneyStatusButtons[i].setEnabled(false);
+                resetMoneyButtons[i].setEnabled(false);
             }
         }
 
@@ -194,6 +228,8 @@ public class DispenserPanel extends JPanel {
             repairReciptPrinterButtons[i].setEnabled(true);
             repairCashRegisterButtons[i].setEnabled(true);
             changeFuelPriceButtons[i].setEnabled(true);
+            showCurrentMoneyStatusButtons[i].setEnabled(true);
+            resetMoneyButtons[i].setEnabled(true);
         }
     }
 

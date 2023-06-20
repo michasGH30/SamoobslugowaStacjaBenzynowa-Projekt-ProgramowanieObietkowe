@@ -1,18 +1,15 @@
-import java.awt.FlowLayout;
+import javax.swing.JTabbedPane;
 
-import javax.swing.JPanel;
-
-public class DispensersPanel extends JPanel {
+public class DispensersPanel extends JTabbedPane {
     private DispenserPanel[] dispenserPanels;
 
     public DispensersPanel(MainFrame mainFrame) {
         super();
-        setLayout(new FlowLayout());
-        dispenserPanels = new DispenserPanel[2];
-        dispenserPanels[0] = new DispenserPanel(mainFrame, 0);
-        dispenserPanels[1] = new DispenserPanel(mainFrame, 1);
-        add(dispenserPanels[0]);
-        add(dispenserPanels[1]);
+        dispenserPanels = new DispenserPanel[6];
+        for (int i = 0; i < dispenserPanels.length; i++) {
+            dispenserPanels[i] = new DispenserPanel(mainFrame, i);
+            addTab("Dystrybutor " + (i + 1), dispenserPanels[i]);
+        }
     }
 
     public DispenserPanel[] getDispenserPanels() {

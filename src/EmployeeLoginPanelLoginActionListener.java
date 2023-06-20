@@ -27,8 +27,6 @@ public class EmployeeLoginPanelLoginActionListener implements ActionListener {
                 dispenserPanel.resetButtons();
                 dispenserPanel.setClientButtonsVisibility(false);
                 dispenserPanel.setEmployeeButtonsVisibility(true);
-                dispenserPanel.revalidate();
-                dispenserPanel.repaint();
             }
             mainFrame.getDispensersPanel().resetButtons();
             mainFrame.getDispensersPanel().setDisableButtons(-1, -1);

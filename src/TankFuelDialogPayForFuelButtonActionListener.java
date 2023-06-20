@@ -63,8 +63,6 @@ public class TankFuelDialogPayForFuelButtonActionListener implements ActionListe
                     destroyMessageLabel.setVisible(true);
                     destroyMessageLabel.setText(e1.getMessage());
                 }
-                mainFrame.revalidate();
-                mainFrame.repaint();
 
                 new ReceiptDialog(mainFrame, tankFuelDialog, mainFrame.getPerson().getName(),
                         mainFrame.getPerson().getSurname(),

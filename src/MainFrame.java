@@ -12,7 +12,7 @@ public class MainFrame extends JFrame {
 
     public MainFrame() {
         super("Mój program");
-        setSize(1500, 1000);
+        setSize(1500, 1250);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         person = new Client();

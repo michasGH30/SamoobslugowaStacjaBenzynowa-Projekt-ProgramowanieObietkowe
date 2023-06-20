@@ -19,7 +19,7 @@ public class CashRegister implements Repairable {
         isActive = true;
     }
 
-    private void setMoney() {
+    public void setMoney() {
         money.put(0.01f, 10);
         money.put(0.02f, 10);
         money.put(0.05f, 10);
@@ -35,7 +35,7 @@ public class CashRegister implements Repairable {
         money.put(100.0f, 10);
     }
 
-    public void resetBills() {
+    private void resetBills() {
         bills[0] = 100.0f;
         bills[1] = 50.0f;
         bills[2] = 20.0f;
@@ -87,6 +87,16 @@ public class CashRegister implements Repairable {
         for (Entry<Float, Integer> m : money.entrySet()) {
             System.out.println("Rodzaj: " + m.getKey() + "zł, ilość w kasie: " + m.getValue());
         }
+    }
+
+    public String[] getCurrentMoneyStatus() {
+        String[] array = new String[13];
+        int i = 0;
+        for (Entry<Float, Integer> m : money.entrySet()) {
+            array[i] = "Rodzaj: " + m.getKey() + "zł, Ilość w kasie: " + m.getValue();
+            i++;
+        }
+        return array;
     }
 
     public void destroy() {
