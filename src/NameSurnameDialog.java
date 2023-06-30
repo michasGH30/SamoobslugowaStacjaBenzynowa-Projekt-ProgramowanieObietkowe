@@ -2,22 +2,21 @@ import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
+
 import javax.swing.JTextField;
 
 public class NameSurnameDialog extends JDialog {
 
-    private JLabel nameLabel;
+    private CustomLabel nameLabel;
     private JTextField nameTextField;
-    private JLabel surnameLabel;
+    private CustomLabel surnameLabel;
     private JTextField surnameTextField;
-    private JButton button;
+    private CustomButton button;
 
     public NameSurnameDialog(MainFrame mainFrame) {
         super(mainFrame, "Okno dialogowe danych osobowych");
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(mainFrame);
         setLayout(new GridLayout(5, 1, 5, 5));
         setUI();
         addActionListeners(mainFrame);
@@ -26,24 +25,21 @@ public class NameSurnameDialog extends JDialog {
     }
 
     private void setUI() {
-        nameLabel = new JLabel("Podaj swoje imie:");
-        nameLabel.setFont(FontSingleton.getInstance().getFont());
+        nameLabel = new CustomLabel("Podaj swoje imie:");
         add(nameLabel);
 
         nameTextField = new JTextField();
         nameTextField.setFont(FontSingleton.getInstance().getFont());
         add(nameTextField);
 
-        surnameLabel = new JLabel("Podaj swoje nazwisko:");
-        surnameLabel.setFont(FontSingleton.getInstance().getFont());
+        surnameLabel = new CustomLabel("Podaj swoje nazwisko:");
         add(surnameLabel);
 
         surnameTextField = new JTextField();
         surnameTextField.setFont(FontSingleton.getInstance().getFont());
         add(surnameTextField);
 
-        button = new JButton("Dalej");
-        button.setFont(FontSingleton.getInstance().getSmallerFont());
+        button = new CustomButton("Dalej");
         add(button);
 
     }

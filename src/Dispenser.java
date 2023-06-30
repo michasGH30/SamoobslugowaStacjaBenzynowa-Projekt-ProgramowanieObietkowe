@@ -1,5 +1,6 @@
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -10,6 +11,7 @@ public abstract class Dispenser implements Repairable {
     private CashRegister cashRegister;
     public final static float maxFuel = 100.00f;
     private boolean isActive;
+    private ArrayList<Payment> payments;
 
     public float getPricePerLitr() {
         return pricePerLitr;
@@ -24,6 +26,7 @@ public abstract class Dispenser implements Repairable {
         isActive = true;
         currentFuel = maxFuel;
         this.type = type;
+        payments = new ArrayList<Payment>();
         getPriceFromFile(file);
     }
 
@@ -114,6 +117,14 @@ public abstract class Dispenser implements Repairable {
 
     public void setPricePerLitr(float pricePerLitr) {
         this.pricePerLitr = pricePerLitr;
+    }
+
+    public void addPayment(Payment payment) {
+        payments.add(payment);
+    }
+
+    public ArrayList<Payment> getPayments() {
+        return payments;
     }
 
 }

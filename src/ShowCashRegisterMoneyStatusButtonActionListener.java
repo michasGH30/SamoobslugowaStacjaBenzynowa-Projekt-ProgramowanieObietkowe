@@ -1,11 +1,11 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ShowCashRegisterMoneyStatusActionListener implements ActionListener {
+public class ShowCashRegisterMoneyStatusButtonActionListener implements ActionListener {
 
     private MainFrame mainFrame;
 
-    public ShowCashRegisterMoneyStatusActionListener(MainFrame mainFrame) {
+    public ShowCashRegisterMoneyStatusButtonActionListener(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
     }
 

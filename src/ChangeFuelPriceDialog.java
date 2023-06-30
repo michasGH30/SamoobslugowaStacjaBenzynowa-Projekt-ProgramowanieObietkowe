@@ -1,20 +1,19 @@
 import java.awt.GridLayout;
 
-import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
+
 import javax.swing.JTextField;
 
 public class ChangeFuelPriceDialog extends JDialog {
-    private JLabel enterNewPriceLabel;
-    private JLabel oldPriceLabel;
+    private CustomLabel enterNewPriceLabel;
+    private CustomLabel oldPriceLabel;
     private JTextField enterNewPriceTextField;
-    private JButton enterNewPriceButton;
+    private CustomButton enterNewPriceButton;
 
-    public ChangeFuelPriceDialog(MainFrame mainFrame, JLabel fuelPriceLabel) {
+    public ChangeFuelPriceDialog(MainFrame mainFrame, CustomLabel fuelPriceLabel) {
         super(mainFrame, "Modyfikuj cenę paliwa");
         setLayout(new GridLayout(4, 1, 5, 5));
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(mainFrame);
         setUI(mainFrame);
         addActionListeners(mainFrame, fuelPriceLabel);
         setSize(300, 300);
@@ -22,22 +21,19 @@ public class ChangeFuelPriceDialog extends JDialog {
     }
 
     private void setUI(MainFrame mainFrame) {
-        oldPriceLabel = new JLabel(
+        oldPriceLabel = new CustomLabel(
                 "Stara cena: " + mainFrame.getPerson().getCurentDispenser().getPricePerLitr() + " zł");
-        oldPriceLabel.setFont(FontSingleton.getInstance().getFont());
-        enterNewPriceLabel = new JLabel("Podaj nową cenę:");
-        enterNewPriceLabel.setFont(FontSingleton.getInstance().getFont());
+        enterNewPriceLabel = new CustomLabel("Podaj nową cenę:");
         enterNewPriceTextField = new JTextField();
         enterNewPriceTextField.setFont(FontSingleton.getInstance().getFont());
-        enterNewPriceButton = new JButton("Zmień cenę");
-        enterNewPriceButton.setFont(FontSingleton.getInstance().getSmallerFont());
+        enterNewPriceButton = new CustomButton("Zmień cenę");
         add(oldPriceLabel);
         add(enterNewPriceLabel);
         add(enterNewPriceTextField);
         add(enterNewPriceButton);
     }
 
-    private void addActionListeners(MainFrame mainFrame, JLabel fuelPriceLabel) {
+    private void addActionListeners(MainFrame mainFrame, CustomLabel fuelPriceLabel) {
         enterNewPriceButton.addActionListener(
                 new ChangeFuelPriceDialogActionListener(this, mainFrame, enterNewPriceTextField, fuelPriceLabel));
     }

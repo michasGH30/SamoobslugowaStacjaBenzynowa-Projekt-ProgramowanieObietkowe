@@ -8,6 +8,11 @@ public class MainFrame extends JFrame {
     private DispensersPanel dispensersPanel;
     private TopPanel topPanel;
     private BottomPanel bottomPanel;
+
+    public BottomPanel getBottomPanel() {
+        return bottomPanel;
+    }
+
     private Person person;
 
     public MainFrame() {

@@ -58,3 +58,11 @@ README.md
 bin/CurrentMoneyStatusDialog.class
 bin/ResetMoneyActionListener.class
 bin/ShowCashRegisterMoneyStatusActionListener.class
+bin/CustomButton.class
+bin/CustomLabel.class
+bin/Payment.class
+bin/PaymentsDialog.class
+bin/PaymentsScrollPanel.class
+bin/PaymentsSingleton.class
+bin/ShowCashRegisterMoneyStatusButtonActionListener.class
+bin/ShowDispenserPaymentsButtonActionListener.class

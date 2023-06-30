@@ -2,38 +2,36 @@ import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 
 public class ReceiptDialog extends JDialog {
-    private JLabel nameLabelDescription;
-    private JLabel nameLabel;
+    private CustomLabel nameLabelDescription;
+    private CustomLabel nameLabel;
 
-    private JLabel surnameLabelDescription;
-    private JLabel surnameLabel;
+    private CustomLabel surnameLabelDescription;
+    private CustomLabel surnameLabel;
 
-    private JLabel typeOfFuelDescription;
-    private JLabel typeOfFuel;
+    private CustomLabel typeOfFuelDescription;
+    private CustomLabel typeOfFuel;
 
-    private JLabel amountOfFuelDescription;
-    private JLabel amountOfFuel;
+    private CustomLabel amountOfFuelDescription;
+    private CustomLabel amountOfFuel;
 
-    private JLabel amountToPayDescription;
-    private JLabel amountToPay;
+    private CustomLabel amountToPayDescription;
+    private CustomLabel amountToPay;
 
-    private JLabel enterAmountToPayDescription;
-    private JLabel enterAmountToPay;
+    private CustomLabel enterAmountToPayDescription;
+    private CustomLabel enterAmountToPay;
 
-    private JLabel restLabelDescription;
-    private JLabel restLabel;
+    private CustomLabel restLabelDescription;
+    private CustomLabel restLabel;
 
     public ReceiptDialog(MainFrame mainFrame, TankFuelDialog owner, String name, String surname, String typeOfFuelVal,
             float amountToPayVal,
-            float enterAmountToPay, float rest, float amountOfFuelVal, JButton tankFuelButton) {
+            float enterAmountToPay, float rest, float amountOfFuelVal, CustomButton tankFuelButton) {
         super(owner, "Paragon");
         setLayout(new GridLayout(7, 2, 10, 10));
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(mainFrame);
         setUI(name, surname, typeOfFuelVal, amountToPayVal, enterAmountToPay, rest, amountOfFuelVal);
         addActionListeners(mainFrame, tankFuelButton);
         pack();
@@ -43,54 +41,33 @@ public class ReceiptDialog extends JDialog {
     private void setUI(String name, String surname, String typeOfFuelVal, float amountToPayVal,
             float enterAmountToPayVal, float rest, float amountOfFuelVal) {
 
-        nameLabelDescription = new JLabel("Imie:");
-        nameLabelDescription.setFont(FontSingleton.getInstance().getFont());
-        nameLabelDescription.setForeground(ColorSingleton.getInstance().getRed());
+        nameLabelDescription = new CustomLabel("Imie:", ColorSingleton.getInstance().getRed());
 
-        nameLabel = new JLabel(name);
-        nameLabel.setFont(FontSingleton.getInstance().getFont());
+        nameLabel = new CustomLabel(name);
 
-        surnameLabelDescription = new JLabel("Nazwisko");
-        surnameLabelDescription.setFont(FontSingleton.getInstance().getFont());
-        surnameLabelDescription.setForeground(ColorSingleton.getInstance().getRed());
+        surnameLabelDescription = new CustomLabel("Nazwisko", ColorSingleton.getInstance().getRed());
 
-        surnameLabel = new JLabel(surname);
-        surnameLabel.setFont(FontSingleton.getInstance().getFont());
+        surnameLabel = new CustomLabel(surname);
 
-        typeOfFuelDescription = new JLabel("Typ paliwa:");
-        typeOfFuelDescription.setFont(FontSingleton.getInstance().getFont());
-        typeOfFuelDescription.setForeground(ColorSingleton.getInstance().getRed());
+        typeOfFuelDescription = new CustomLabel("Typ paliwa:", ColorSingleton.getInstance().getRed());
 
-        typeOfFuel = new JLabel(typeOfFuelVal);
-        typeOfFuel.setFont(FontSingleton.getInstance().getFont());
+        typeOfFuel = new CustomLabel(typeOfFuelVal);
 
-        amountOfFuelDescription = new JLabel("Zatankowano:");
-        amountOfFuelDescription.setFont(FontSingleton.getInstance().getFont());
-        amountOfFuelDescription.setForeground(ColorSingleton.getInstance().getRed());
+        amountOfFuelDescription = new CustomLabel("Zatankowano:", ColorSingleton.getInstance().getRed());
 
-        amountOfFuel = new JLabel(amountOfFuelVal + " l");
-        amountOfFuel.setFont(FontSingleton.getInstance().getFont());
+        amountOfFuel = new CustomLabel(amountOfFuelVal + " l");
 
-        amountToPayDescription = new JLabel("Do zapłaty:");
-        amountToPayDescription.setFont(FontSingleton.getInstance().getFont());
-        amountToPayDescription.setForeground(ColorSingleton.getInstance().getRed());
+        amountToPayDescription = new CustomLabel("Do zapłaty:", ColorSingleton.getInstance().getRed());
 
-        amountToPay = new JLabel(amountToPayVal + "zł");
-        amountToPay.setFont(FontSingleton.getInstance().getFont());
+        amountToPay = new CustomLabel(amountToPayVal + "zł");
 
-        enterAmountToPayDescription = new JLabel("Zapłacono:");
-        enterAmountToPayDescription.setFont(FontSingleton.getInstance().getFont());
-        enterAmountToPayDescription.setForeground(ColorSingleton.getInstance().getRed());
+        enterAmountToPayDescription = new CustomLabel("Zapłacono:", ColorSingleton.getInstance().getRed());
 
-        enterAmountToPay = new JLabel(enterAmountToPayVal + "zł");
-        enterAmountToPay.setFont(FontSingleton.getInstance().getFont());
+        enterAmountToPay = new CustomLabel(enterAmountToPayVal + "zł");
 
-        restLabelDescription = new JLabel("Reszta:");
-        restLabelDescription.setFont(FontSingleton.getInstance().getFont());
-        restLabelDescription.setForeground(ColorSingleton.getInstance().getRed());
+        restLabelDescription = new CustomLabel("Reszta:", ColorSingleton.getInstance().getRed());
 
-        restLabel = new JLabel(rest + "zł");
-        restLabel.setFont(FontSingleton.getInstance().getFont());
+        restLabel = new CustomLabel(rest + "zł");
 
         add(nameLabelDescription);
         add(nameLabel);
@@ -108,7 +85,7 @@ public class ReceiptDialog extends JDialog {
         add(restLabel);
     }
 
-    private void addActionListeners(MainFrame mainFrame, JButton tankFuelButton) {
+    private void addActionListeners(MainFrame mainFrame, CustomButton tankFuelButton) {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {

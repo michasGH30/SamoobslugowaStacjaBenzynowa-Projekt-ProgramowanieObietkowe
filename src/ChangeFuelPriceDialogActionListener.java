@@ -1,7 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -10,10 +9,10 @@ public class ChangeFuelPriceDialogActionListener implements ActionListener {
     private ChangeFuelPriceDialog changeFuelPriceDialog;
     private MainFrame mainFrame;
     private JTextField enterNewPriceTextField;
-    private JLabel fuelPriceLabel;
+    private CustomLabel fuelPriceLabel;
 
     public ChangeFuelPriceDialogActionListener(ChangeFuelPriceDialog changeFuelPriceDialog, MainFrame mainFrame,
-            JTextField enterNewPriceTextField, JLabel fuelPriceLabel) {
+            JTextField enterNewPriceTextField, CustomLabel fuelPriceLabel) {
         this.changeFuelPriceDialog = changeFuelPriceDialog;
         this.mainFrame = mainFrame;
         this.enterNewPriceTextField = enterNewPriceTextField;
@@ -28,10 +27,12 @@ public class ChangeFuelPriceDialogActionListener implements ActionListener {
             fuelPriceLabel.setText("Cena za litr: " + newPrice + " zł");
             changeFuelPriceDialog.setVisible(false);
         } catch (NumberFormatException exc) {
-            JOptionPane.showMessageDialog(changeFuelPriceDialog, "Podałeś złą wartość", "Błędna wartość",
+            JOptionPane.showMessageDialog(changeFuelPriceDialog,
+                    "Podałeś złą wartość kwoty za paliwo(zły format liczby)",
+                    "Błędna wartość",
                     JOptionPane.ERROR_MESSAGE);
         } catch (NullPointerException exc) {
-            JOptionPane.showMessageDialog(changeFuelPriceDialog, "Podałeś złą wartość", "Błędna wartość",
+            JOptionPane.showMessageDialog(changeFuelPriceDialog, "Nie podałeś żadnej wartości", "Błędna wartość",
                     JOptionPane.ERROR_MESSAGE);
         }
     }

@@ -1,50 +1,40 @@
 import java.awt.GridLayout;
 
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 
 public class InfoDialog extends JDialog {
 
-    private JLabel typeDescriptionLabel;
-    private JLabel nameDescriptionLabel;
-    private JLabel surnameDescriptionLabel;
+    private CustomLabel typeDescriptionLabel;
+    private CustomLabel nameDescriptionLabel;
+    private CustomLabel surnameDescriptionLabel;
 
-    private JLabel typeLabel;
-    private JLabel nameLabel;
-    private JLabel surnameLabel;
+    private CustomLabel typeLabel;
+    private CustomLabel nameLabel;
+    private CustomLabel surnameLabel;
 
     public InfoDialog(MainFrame mainFrame) {
         super(mainFrame, "Informacje o aktualnym użytkowniku");
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(mainFrame);
         setLayout(new GridLayout(3, 2, 5, 5));
         setUI(mainFrame);
-        pack();
+        setSize(300, 150);
         setVisible(true);
     }
 
     private void setUI(MainFrame mainFrame) {
         mainFrame.debugSout("Tu są tworzone obiekty UI, dane:, typ: " + mainFrame.getPerson().getType() + ", imie: "
                 + mainFrame.getPerson().getName() + ", nazwisko: " + mainFrame.getPerson().getSurname());
-        typeDescriptionLabel = new JLabel("Rola:");
-        typeDescriptionLabel.setFont(FontSingleton.getInstance().getFont());
-        typeDescriptionLabel.setForeground(ColorSingleton.getInstance().getRed());
+        typeDescriptionLabel = new CustomLabel("Rola:", ColorSingleton.getInstance().getRed());
 
-        typeLabel = new JLabel(mainFrame.getPerson().getType());
-        typeLabel.setFont(FontSingleton.getInstance().getFont());
+        typeLabel = new CustomLabel(mainFrame.getPerson().getType());
 
-        nameDescriptionLabel = new JLabel("Imię:");
-        nameDescriptionLabel.setFont(FontSingleton.getInstance().getFont());
-        nameDescriptionLabel.setForeground(ColorSingleton.getInstance().getRed());
+        nameDescriptionLabel = new CustomLabel("Imię:", ColorSingleton.getInstance().getRed());
 
-        nameLabel = new JLabel(mainFrame.getPerson().getName());
-        nameLabel.setFont(FontSingleton.getInstance().getFont());
+        nameLabel = new CustomLabel(mainFrame.getPerson().getName());
 
-        surnameDescriptionLabel = new JLabel("Nazwisko:");
-        surnameDescriptionLabel.setFont(FontSingleton.getInstance().getFont());
-        surnameDescriptionLabel.setForeground(ColorSingleton.getInstance().getRed());
+        surnameDescriptionLabel = new CustomLabel("Nazwisko:", ColorSingleton.getInstance().getRed());
 
-        surnameLabel = new JLabel(mainFrame.getPerson().getSurname());
-        surnameLabel.setFont(FontSingleton.getInstance().getFont());
+        surnameLabel = new CustomLabel(mainFrame.getPerson().getSurname());
 
         mainFrame.debugSout("Tu są stworzone obiekty UI, dane:, typ: " + typeLabel.getText() + ", imie: "
                 + nameLabel.getText() + ", nazwisko: " + surnameLabel.getText());

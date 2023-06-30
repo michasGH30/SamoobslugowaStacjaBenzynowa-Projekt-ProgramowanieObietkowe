@@ -1,8 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -11,18 +9,21 @@ public class TankFuelDialogPayForFuelButtonActionListener implements ActionListe
     private JTextField amountToPayTextField;
     private TankFuelDialog tankFuelDialog;
     private MainFrame mainFrame;
-    private JLabel currentFuelLabel;
-    private JLabel destroyMessageLabel;
-    private JButton tankFuelButton;
+    private CustomLabel currentFuelLabel;
+    private CustomLabel destroyMessageLabel;
+    private CustomButton tankFuelButton;
+    private int dispenserID;
 
     public TankFuelDialogPayForFuelButtonActionListener(JTextField amountToPayTextField, TankFuelDialog tankFuelDialog,
-            MainFrame mainFrame, JLabel currentFuelLabel, JLabel destroyMessageLabel, JButton tankFuelButton) {
+            MainFrame mainFrame, CustomLabel currentFuelLabel, CustomLabel destroyMessageLabel,
+            CustomButton tankFuelButton, int dispenserID) {
         this.amountToPayTextField = amountToPayTextField;
         this.tankFuelDialog = tankFuelDialog;
         this.mainFrame = mainFrame;
         this.currentFuelLabel = currentFuelLabel;
         this.destroyMessageLabel = destroyMessageLabel;
         this.tankFuelButton = tankFuelButton;
+        this.dispenserID = dispenserID;
     }
 
     @Override
@@ -63,6 +64,14 @@ public class TankFuelDialogPayForFuelButtonActionListener implements ActionListe
                     destroyMessageLabel.setVisible(true);
                     destroyMessageLabel.setText(e1.getMessage());
                 }
+                Payment payment = new Payment(mainFrame.getPerson().getName(),
+                        mainFrame.getPerson().getSurname(),
+                        mainFrame.getPerson().getCurentDispenser().getType(),
+                        amountToPay, enterAmountToPay, Utils.roundToTwoDigits(enterAmountToPay - amountToPay),
+                        mainFrame.getPerson().getCurentDispenser().getReceiptPrinter().getAmountOfFuel(),
+                        dispenserID);
+                PaymentsSingleton.getInstance().addPayment(payment);
+                mainFrame.getPerson().getCurentDispenser().addPayment(payment);
 
                 new ReceiptDialog(mainFrame, tankFuelDialog, mainFrame.getPerson().getName(),
                         mainFrame.getPerson().getSurname(),
@@ -78,10 +87,10 @@ public class TankFuelDialogPayForFuelButtonActionListener implements ActionListe
             }
         } catch (NumberFormatException exc) {
             JOptionPane.showMessageDialog(tankFuelDialog,
-                    "Podałeś złą wartość kwoty(zły format liczby zmiennoprzecinkowej)", "Błędna wartość",
+                    "Podałeś złą wartość kwoty(zły format liczby)", "Błędna wartość",
                     JOptionPane.ERROR_MESSAGE);
         } catch (NullPointerException exc) {
-            JOptionPane.showMessageDialog(tankFuelDialog, "Podałeś złą wartość kwoty(wartość podana to NULL)",
+            JOptionPane.showMessageDialog(tankFuelDialog, "Nie podałeś żadnej kwoty",
                     "Błędna wartość",
                     JOptionPane.ERROR_MESSAGE);
         }

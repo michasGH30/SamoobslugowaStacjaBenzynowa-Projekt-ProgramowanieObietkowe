@@ -1,50 +1,46 @@
-import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
+
 import javax.swing.JPasswordField;
 
 public class EmployeeLoginPanel extends JDialog {
-    private JLabel enterPassword;
-    private JButton loginButton;
-    private JButton backButton;
+    private CustomLabel enterPassword;
+    private CustomButton loginButton;
+    private CustomButton backButton;
     private JPasswordField passwordField;
 
     public EmployeeLoginPanel(MainFrame mainFrame) {
         super(mainFrame, "Panel logowania pracownika.");
 
-        setLayout(new FlowLayout(FlowLayout.CENTER));
+        setLayout(new GridLayout(2, 2, 5, 5));
 
-        enterPassword = new JLabel("Podaj hasło:");
-        loginButton = new JButton("Zaloguj");
-        backButton = new JButton("Powrót");
+        enterPassword = new CustomLabel("Podaj hasło:");
+        loginButton = new CustomButton("Zaloguj");
+        backButton = new CustomButton("Powrót");
         passwordField = new JPasswordField(20);
 
-        enterPassword.setFont(FontSingleton.getInstance().getFont());
-        loginButton.setFont(FontSingleton.getInstance().getFont());
-        backButton.setFont(FontSingleton.getInstance().getFont());
         passwordField.setFont(FontSingleton.getInstance().getFont());
 
-        setSize(500, 300);
-        setLocationRelativeTo(null);
+        setSize(500, 150);
+        setLocationRelativeTo(mainFrame);
 
         addActionListeners(mainFrame);
 
         add(enterPassword);
         add(passwordField);
-        add(loginButton);
         add(backButton);
+        add(loginButton);
 
     }
 
-    public JLabel getEnterPassword() {
+    public CustomLabel getEnterPassword() {
         return enterPassword;
     }
 
-    public JButton getLoginButton() {
+    public CustomButton getLoginButton() {
         return loginButton;
     }
 

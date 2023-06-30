@@ -1,17 +1,15 @@
 import java.awt.GridLayout;
 
-import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 
 public class CurrentMoneyStatusDialog extends JDialog {
-    private JLabel cashRegisterStatusLabel;
-    private JLabel[] priceLabels;
-    private JButton resetMoneyButton;
+    private CustomLabel cashRegisterStatusLabel;
+    private CustomLabel[] priceLabels;
+    private CustomButton resetMoneyButton;
 
     public CurrentMoneyStatusDialog(MainFrame mainFrame) {
         super(mainFrame, "Informacje o kasie fiskalnej");
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(mainFrame);
         setLayout(new GridLayout(15, 1, 5, 5));
         setUI(mainFrame);
         addActionListeners(mainFrame);
@@ -20,24 +18,21 @@ public class CurrentMoneyStatusDialog extends JDialog {
     }
 
     private void setUI(MainFrame mainFrame) {
-        cashRegisterStatusLabel = new JLabel();
-        cashRegisterStatusLabel.setFont(FontSingleton.getInstance().getFont());
+        cashRegisterStatusLabel = new CustomLabel(ColorSingleton.getInstance().getRed());
         if (mainFrame.getPerson().getCurentDispenser().getCashRegister().isActive()) {
             cashRegisterStatusLabel.setText("Kasa fiskalna działa");
         } else {
             cashRegisterStatusLabel.setText("Kasa fiskalna nie działa");
-            cashRegisterStatusLabel.setForeground(ColorSingleton.getInstance().getRed());
         }
         add(cashRegisterStatusLabel);
-        priceLabels = new JLabel[13];
+        priceLabels = new CustomLabel[13];
         int i = 0;
         for (String info : mainFrame.getPerson().getCurentDispenser().getCashRegister().getCurrentMoneyStatus()) {
-            priceLabels[i] = new JLabel(info);
-            priceLabels[i].setFont(FontSingleton.getInstance().getFont());
+            priceLabels[i] = new CustomLabel(info);
             add(priceLabels[i]);
             i++;
         }
-        resetMoneyButton = new JButton("Napełnij kasę fiskalną");
+        resetMoneyButton = new CustomButton("Napełnij kasę fiskalną");
         add(resetMoneyButton);
     }
 

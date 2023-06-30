@@ -1,21 +1,20 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class TankFuelDialogCalculateAmountToPayButtonActionListener implements ActionListener {
 
-    private JLabel amountToPayLabel;
-    private JButton payForFuelButton;
+    private CustomLabel amountToPayLabel;
+    private CustomButton payForFuelButton;
     private JTextField fuelAmountTextField;
     private TankFuelDialog tankFuelDialog;
     private JTextField amountToPayTextField;
     private MainFrame mainFrame;
 
-    public TankFuelDialogCalculateAmountToPayButtonActionListener(JLabel amountToPayLabel, JButton payForFuelButton,
+    public TankFuelDialogCalculateAmountToPayButtonActionListener(CustomLabel amountToPayLabel,
+            CustomButton payForFuelButton,
             JTextField fuelAmountTextField, TankFuelDialog tankFuelDialog, JTextField amountToPayTextField,
             MainFrame mainFrame) {
         this.amountToPayLabel = amountToPayLabel;
@@ -47,7 +46,7 @@ public class TankFuelDialogCalculateAmountToPayButtonActionListener implements A
             }
         } catch (NumberFormatException exc) {
             JOptionPane.showMessageDialog(tankFuelDialog,
-                    "Podałeś złą wartość paliwa(zły typ liczby zmiennoprzecinkowej)", "Błędna wartość",
+                    "Podałeś złą wartość paliwa(zły typ liczby)", "Błędna wartość",
                     JOptionPane.ERROR_MESSAGE);
         } catch (NullPointerException exc) {
             JOptionPane.showMessageDialog(tankFuelDialog, "Nie podałeś żadnej wartości", "Błędna wartość",

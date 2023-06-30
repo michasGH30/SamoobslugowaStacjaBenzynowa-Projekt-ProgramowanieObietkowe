@@ -1,16 +1,15 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class RepairCashRegisterButtonActionListener implements ActionListener {
 
     private MainFrame mainFrame;
 
-    private JLabel destroyMessageLabel;
+    private CustomLabel destroyMessageLabel;
 
-    public RepairCashRegisterButtonActionListener(MainFrame mainFrame, JLabel destroyMessageLabel) {
+    public RepairCashRegisterButtonActionListener(MainFrame mainFrame, CustomLabel destroyMessageLabel) {
         this.mainFrame = mainFrame;
         this.destroyMessageLabel = destroyMessageLabel;
     }

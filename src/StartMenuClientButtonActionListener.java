@@ -21,6 +21,7 @@ public class StartMenuClientButtonActionListener implements ActionListener {
             dispenserPanel.setClientButtonsVisibility(true);
             dispenserPanel.setEmployeeButtonsVisibility(false);
         }
+        mainFrame.getBottomPanel().setAllPaymentsButtonVisibility(false);
         dispensersPanel.resetButtons();
         dispensersPanel.setDisableButtons(-1, -1);
         dispensersPanel.afterTankFuelCheck();

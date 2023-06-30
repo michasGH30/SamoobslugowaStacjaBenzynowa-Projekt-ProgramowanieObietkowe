@@ -1,14 +1,12 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JLabel;
-
 public class RefuelDispenserButtonActionListener implements ActionListener {
 
     private MainFrame mainFrame;
-    private JLabel currentFuelLabel;
+    private CustomLabel currentFuelLabel;
 
-    public RefuelDispenserButtonActionListener(MainFrame mainFrame, JLabel currentFuelLabel) {
+    public RefuelDispenserButtonActionListener(MainFrame mainFrame, CustomLabel currentFuelLabel) {
         this.mainFrame = mainFrame;
         this.currentFuelLabel = currentFuelLabel;
     }

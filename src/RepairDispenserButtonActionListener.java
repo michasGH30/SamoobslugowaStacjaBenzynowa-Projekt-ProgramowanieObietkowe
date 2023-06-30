@@ -1,15 +1,14 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class RepairDispenserButtonActionListener implements ActionListener {
 
     private MainFrame mainFrame;
-    private JLabel destroyMessageLabel;
+    private CustomLabel destroyMessageLabel;
 
-    public RepairDispenserButtonActionListener(MainFrame mainFrame, JLabel destroyMessageLabel) {
+    public RepairDispenserButtonActionListener(MainFrame mainFrame, CustomLabel destroyMessageLabel) {
         this.mainFrame = mainFrame;
         this.destroyMessageLabel = destroyMessageLabel;
     }

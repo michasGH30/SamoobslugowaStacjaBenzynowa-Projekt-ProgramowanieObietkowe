@@ -1,33 +1,31 @@
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Insets;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class DispenserPanel extends JPanel {
     private Dispenser[] dispensers;
 
-    private JLabel[] typeOfDistributorLabels;
-    private JLabel[] pricesLabels;
-    private JLabel[] currentFuelLabels;
-    private JLabel[] destroyMessageLabels;
-    private JButton[] tankFuelButtons;
-    private JButton[] chooseDispenserButtons;
-    private JButton[] repairDispenserButtons;
-    private JButton[] refuelDispenserButtons;
-    private JButton[] repairReciptPrinterButtons;
-    private JButton[] repairCashRegisterButtons;
-    private JButton[] changeFuelPriceButtons;
-    private JButton[] resetMoneyButtons;
-    private JButton[] showCurrentMoneyStatusButtons;
+    private CustomLabel[] typeOfDistributorLabels;
+    private CustomLabel[] pricesLabels;
+    private CustomLabel[] currentFuelLabels;
+    private CustomLabel[] destroyMessageLabels;
+    private CustomButton[] tankFuelButtons;
+    private CustomButton[] chooseDispenserButtons;
+    private CustomButton[] repairDispenserButtons;
+    private CustomButton[] refuelDispenserButtons;
+    private CustomButton[] repairReciptPrinterButtons;
+    private CustomButton[] repairCashRegisterButtons;
+    private CustomButton[] changeFuelPriceButtons;
+    private CustomButton[] resetMoneyButtons;
+    private CustomButton[] showCurrentMoneyStatusButtons;
+    private CustomButton[] showPaymentsButton;
     private int ID;
 
     public DispenserPanel(MainFrame mainFrame, int ID) {
         super();
         this.ID = ID;
-        setLayout(new GridLayout(13, 3, 5, 5));
+        setLayout(new GridLayout(14, 3, 5, 5));
         setDispensers();
         setUI();
         addActionListeners(mainFrame);
@@ -58,96 +56,77 @@ public class DispenserPanel extends JPanel {
 
     private void setUI() {
 
-        typeOfDistributorLabels = new JLabel[3];
-        pricesLabels = new JLabel[3];
-        currentFuelLabels = new JLabel[3];
-        destroyMessageLabels = new JLabel[3];
-        tankFuelButtons = new JButton[3];
-        chooseDispenserButtons = new JButton[3];
-        repairDispenserButtons = new JButton[3];
-        refuelDispenserButtons = new JButton[3];
-        repairReciptPrinterButtons = new JButton[3];
-        repairCashRegisterButtons = new JButton[3];
-        changeFuelPriceButtons = new JButton[3];
-        showCurrentMoneyStatusButtons = new JButton[3];
-        resetMoneyButtons = new JButton[3];
+        typeOfDistributorLabels = new CustomLabel[3];
+        pricesLabels = new CustomLabel[3];
+        currentFuelLabels = new CustomLabel[3];
+        destroyMessageLabels = new CustomLabel[3];
+        tankFuelButtons = new CustomButton[3];
+        chooseDispenserButtons = new CustomButton[3];
+        repairDispenserButtons = new CustomButton[3];
+        refuelDispenserButtons = new CustomButton[3];
+        repairReciptPrinterButtons = new CustomButton[3];
+        repairCashRegisterButtons = new CustomButton[3];
+        changeFuelPriceButtons = new CustomButton[3];
+        showCurrentMoneyStatusButtons = new CustomButton[3];
+        resetMoneyButtons = new CustomButton[3];
+        showPaymentsButton = new CustomButton[3];
         for (int i = 0; i < 3; i++) {
-            typeOfDistributorLabels[i] = new JLabel(dispensers[i].getType());
-            typeOfDistributorLabels[i].setFont(FontSingleton.getInstance().getFont());
+            typeOfDistributorLabels[i] = new CustomLabel(dispensers[i].getType());
             add(typeOfDistributorLabels[i]);
         }
         for (int i = 0; i < 3; i++) {
-            pricesLabels[i] = new JLabel("Cena za litr: " + dispensers[i].getPricePerLitr() + " zł");
-            pricesLabels[i].setFont(FontSingleton.getInstance().getFont());
+            pricesLabels[i] = new CustomLabel("Cena za litr: " + dispensers[i].getPricePerLitr() + " zł");
             add(pricesLabels[i]);
         }
         for (int i = 0; i < 3; i++) {
-            currentFuelLabels[i] = new JLabel("Ilość paliwa: " + dispensers[i].getCurrentFuel() + " l");
-            currentFuelLabels[i].setFont(FontSingleton.getInstance().getFont());
+            currentFuelLabels[i] = new CustomLabel("Ilość paliwa: " + dispensers[i].getCurrentFuel() + " l");
             add(currentFuelLabels[i]);
         }
         for (int i = 0; i < 3; i++) {
-            destroyMessageLabels[i] = new JLabel();
-            destroyMessageLabels[i].setFont(FontSingleton.getInstance().getFont());
-            destroyMessageLabels[i].setForeground(ColorSingleton.getInstance().getRed());
+            destroyMessageLabels[i] = new CustomLabel(ColorSingleton.getInstance().getRed());
             add(destroyMessageLabels[i]);
         }
         for (int i = 0; i < 3; i++) {
-            chooseDispenserButtons[i] = new JButton("Wybierz dystrybutor");
-            chooseDispenserButtons[i].setMargin(new Insets(15, 25, 15, 25));
-            chooseDispenserButtons[i].setCursor(CursorSingleton.getInstance().getHandCursor());
-            chooseDispenserButtons[i].setFont(FontSingleton.getInstance().getSmallerFont());
+            chooseDispenserButtons[i] = new CustomButton("Wybierz dystrybutor");
             add(chooseDispenserButtons[i]);
         }
         for (int i = 0; i < 3; i++) {
-            tankFuelButtons[i] = new JButton("Zatankuj paliwo");
-            tankFuelButtons[i].setCursor(CursorSingleton.getInstance().getHandCursor());
-            tankFuelButtons[i].setFont(FontSingleton.getInstance().getSmallerFont());
+            tankFuelButtons[i] = new CustomButton("Zatankuj paliwo");
             add(tankFuelButtons[i]);
         }
         for (int i = 0; i < 3; i++) {
-            changeFuelPriceButtons[i] = new JButton("Zmień cenę paliwa");
-            changeFuelPriceButtons[i].setCursor(CursorSingleton.getInstance().getHandCursor());
-            changeFuelPriceButtons[i].setFont(FontSingleton.getInstance().getSmallerFont());
+            changeFuelPriceButtons[i] = new CustomButton("Zmień cenę paliwa");
             add(changeFuelPriceButtons[i]);
         }
         for (int i = 0; i < 3; i++) {
-            refuelDispenserButtons[i] = new JButton("Napełnij dystrybutor do pełna");
-            refuelDispenserButtons[i].setCursor(CursorSingleton.getInstance().getHandCursor());
-            refuelDispenserButtons[i].setFont(FontSingleton.getInstance().getSmallerFont());
+            refuelDispenserButtons[i] = new CustomButton("Napełnij dystrybutor do pełna");
             add(refuelDispenserButtons[i]);
         }
         for (int i = 0; i < 3; i++) {
-            repairDispenserButtons[i] = new JButton("Napraw dystrybutor");
-            repairDispenserButtons[i].setCursor(CursorSingleton.getInstance().getHandCursor());
-            repairDispenserButtons[i].setFont(FontSingleton.getInstance().getSmallerFont());
+            repairDispenserButtons[i] = new CustomButton("Napraw dystrybutor");
             add(repairDispenserButtons[i]);
         }
         for (int i = 0; i < 3; i++) {
-            repairCashRegisterButtons[i] = new JButton("Napraw kasę fiskalną");
-            repairCashRegisterButtons[i].setCursor(CursorSingleton.getInstance().getHandCursor());
-            repairCashRegisterButtons[i].setFont(FontSingleton.getInstance().getSmallerFont());
+            repairCashRegisterButtons[i] = new CustomButton("Napraw kasę fiskalną");
             add(repairCashRegisterButtons[i]);
         }
         for (int i = 0; i < 3; i++) {
-            repairReciptPrinterButtons[i] = new JButton("Napraw drukarkę paragonów");
-            repairReciptPrinterButtons[i].setCursor(CursorSingleton.getInstance().getHandCursor());
-            repairReciptPrinterButtons[i].setFont(FontSingleton.getInstance().getSmallerFont());
+            repairReciptPrinterButtons[i] = new CustomButton("Napraw drukarkę paragonów");
             add(repairReciptPrinterButtons[i]);
         }
 
         for (int i = 0; i < 3; i++) {
-            showCurrentMoneyStatusButtons[i] = new JButton("Pokaż status kasy fiskalnej");
-            showCurrentMoneyStatusButtons[i].setCursor(CursorSingleton.getInstance().getHandCursor());
-            showCurrentMoneyStatusButtons[i].setFont(FontSingleton.getInstance().getSmallerFont());
+            showCurrentMoneyStatusButtons[i] = new CustomButton("Pokaż status kasy fiskalnej");
             add(showCurrentMoneyStatusButtons[i]);
         }
 
         for (int i = 0; i < 3; i++) {
-            resetMoneyButtons[i] = new JButton("Napełnij kasę fiskalną");
-            resetMoneyButtons[i].setCursor(CursorSingleton.getInstance().getHandCursor());
-            resetMoneyButtons[i].setFont(FontSingleton.getInstance().getSmallerFont());
+            resetMoneyButtons[i] = new CustomButton("Napełnij kasę fiskalną");
             add(resetMoneyButtons[i]);
+        }
+        for (int i = 0; i < 3; i++) {
+            showPaymentsButton[i] = new CustomButton("Pokaż płatności");
+            add(showPaymentsButton[i]);
         }
 
     }
@@ -167,6 +146,7 @@ public class DispenserPanel extends JPanel {
             changeFuelPriceButtons[i].setVisible(visibility);
             showCurrentMoneyStatusButtons[i].setVisible(visibility);
             resetMoneyButtons[i].setVisible(visibility);
+            showPaymentsButton[i].setVisible(visibility);
         }
     }
 
@@ -176,7 +156,7 @@ public class DispenserPanel extends JPanel {
                     .addActionListener(new ChooseDispenserActionListener(mainFrame, i, this, dispensers[i]));
             tankFuelButtons[i].addActionListener(
                     new TankFuelButtonActionListener(mainFrame, currentFuelLabels[i], destroyMessageLabels[i],
-                            tankFuelButtons[i]));
+                            tankFuelButtons[i], i));
             refuelDispenserButtons[i]
                     .addActionListener(new RefuelDispenserButtonActionListener(mainFrame, currentFuelLabels[i]));
             changeFuelPriceButtons[i]
@@ -188,8 +168,9 @@ public class DispenserPanel extends JPanel {
             repairReciptPrinterButtons[i]
                     .addActionListener(new RepairReciptPrinterButtonActionListener(mainFrame, destroyMessageLabels[i]));
             showCurrentMoneyStatusButtons[i]
-                    .addActionListener(new ShowCashRegisterMoneyStatusActionListener(mainFrame));
+                    .addActionListener(new ShowCashRegisterMoneyStatusButtonActionListener(mainFrame));
             resetMoneyButtons[i].addActionListener(new ResetMoneyActionListener(mainFrame, null));
+            showPaymentsButton[i].addActionListener(new ShowDispenserPaymentsButtonActionListener(mainFrame, true));
         }
     }
 
@@ -203,6 +184,7 @@ public class DispenserPanel extends JPanel {
             changeFuelPriceButtons[i].setEnabled(true);
             showCurrentMoneyStatusButtons[i].setEnabled(true);
             resetMoneyButtons[i].setEnabled(true);
+            showPaymentsButton[i].setEnabled(true);
         }
         for (int i = 0; i < 3; i++) {
             if (!(this.ID == ID && count == i)) {
@@ -214,6 +196,7 @@ public class DispenserPanel extends JPanel {
                 changeFuelPriceButtons[i].setEnabled(false);
                 showCurrentMoneyStatusButtons[i].setEnabled(false);
                 resetMoneyButtons[i].setEnabled(false);
+                showPaymentsButton[i].setEnabled(false);
             }
         }
 
@@ -230,6 +213,7 @@ public class DispenserPanel extends JPanel {
             changeFuelPriceButtons[i].setEnabled(true);
             showCurrentMoneyStatusButtons[i].setEnabled(true);
             resetMoneyButtons[i].setEnabled(true);
+            showPaymentsButton[i].setEnabled(true);
         }
     }
 
@@ -262,7 +246,7 @@ public class DispenserPanel extends JPanel {
 
     }
 
-    public JButton[] getChooseDispenserButtons() {
+    public CustomButton[] getChooseDispenserButtons() {
         return chooseDispenserButtons;
     }
 
