@@ -54,7 +54,6 @@ bin/TopPanel.class
 bin/Utils.class
 .vscode/launch.json
 .vscode/settings.json
-README.md
 bin/CurrentMoneyStatusDialog.class
 bin/ResetMoneyActionListener.class
 bin/ShowCashRegisterMoneyStatusActionListener.class
